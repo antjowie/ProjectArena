@@ -1,14 +1,8 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.2.0
-    hooks:
-      - id: trailing-whitespace
-        files: (.*/Assets($|/.*)')
-      - id: end-of-file-fixer
-        files: (.*/Assets($|/.*)')
-
   - repo: https://github.com/dotnet/format
     rev: "v5.1.225507"
     hooks:
       - id: dotnet-format
-        files: (.*/Assets($|/.*)')
+        files: ^Assets
+        types_or: ["c#", "vb"]
+        entry: dotnet-format Assembly-CSharp.csproj --include

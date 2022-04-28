@@ -46,7 +46,7 @@ namespace Assets.Scripts.Editor
                 using (Process process = new Process())
                 {
                     process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.FileName = Path.Combine("Scripts", "SimpleWebServer.exe");
+                    process.StartInfo.FileName = Path.Combine("..", "Tools", "SimpleWebServer.exe");
                     process.StartInfo.Arguments = new string("Builds/Web 8080");
                     process.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 

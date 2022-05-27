@@ -14,28 +14,94 @@ namespace Assets.Scripts.Editor
 {
     internal class BuildScripts
     {
+        static string[] Scenes = new string[] {
+            "Assets/Scenes/TestScene.unity"
+        };
+
         [MenuItem("Build/Web")]
         static void BuildWeb()
         {
             BuildPlayerOptions options = new BuildPlayerOptions();
-            options.scenes = new string[] { "Assets/Scenes/TestScene.unity" };
-            options.locationPathName = "Builds/Web";
+            options.scenes = Scenes;
+            options.locationPathName = "Builds/Web/Client";
             options.target = BuildTarget.WebGL;
             options.options = BuildOptions.None;
 
-            Debug.Log("Building for web target...");
+            Debug.Log("Building Web target...");
+            BuildBinary(options);
+        }
+
+        [MenuItem("Build/Windows")]
+        static void BuildWindows()
+        {
+            BuildPlayerOptions options = new BuildPlayerOptions();
+            options.scenes = Scenes;
+            options.locationPathName = "Builds/Windows/Client/Client.exe";
+            options.target = BuildTarget.StandaloneWindows64;
+            //options.options = BuildOptions.;
+
+            Debug.Log("Building Windows target...");
+            BuildBinary(options);
+        }
+
+        [MenuItem("Build/WindowsServer")]
+        static void BuildWindowsServer()
+        {
+            BuildPlayerOptions options = new BuildPlayerOptions();
+            options.scenes = Scenes;
+            options.locationPathName = "Builds/Windows/Server/Server.exe";
+            options.target = BuildTarget.StandaloneWindows64;
+            options.subtarget = (int)StandaloneBuildSubtarget.Server;
+
+            Debug.Log("Building Windows Server target...");
+            BuildBinary(options);
+        }
+
+        [MenuItem("Build/LinuxServer")]
+        static void BuildLinuxServer()
+        {
+            BuildPlayerOptions options = new BuildPlayerOptions();
+            options.scenes = Scenes;
+            options.locationPathName = "Builds/Linux/Server/Server";
+            options.target = BuildTarget.StandaloneLinux64;
+            options.subtarget = (int)StandaloneBuildSubtarget.Server;
+
+            Debug.Log("Building Linux Server target...");
+            BuildBinary(options);
+        }
+
+        [MenuItem("Build/BuildAll")]
+        static void BuildBuildAll()
+        {
+            Debug.Log("Building all...");
+            BuildWeb();
+            BuildWindows();
+            BuildLinuxServer();
+            BuildWindowsServer();
+        }
+
+        static void BuildBinary(BuildPlayerOptions options)
+        {
+            PlayerSettings.SetScriptingBackend(BuildTargetGroup.Standalone, ScriptingImplementation.IL2CPP);
+            PlayerSettings.SetScriptingBackend(BuildTargetGroup.WebGL, ScriptingImplementation.IL2CPP);
+            PlayerSettings.SetScriptingBackend(BuildTargetGroup.EmbeddedLinux, ScriptingImplementation.IL2CPP);
+
             BuildReport report = BuildPipeline.BuildPlayer(options);
             BuildSummary summary = report.summary;
 
             if (summary.result == BuildResult.Succeeded)
             {
-                Debug.Log("Build succeeded: " + summary.totalSize + " bytes");
+                Debug.Log("Build succeeded\n" +
+                    $"  Time: {summary.totalTime} seconds\n" +
+                    $"  Size: {summary.totalSize} bytes\n" +
+                    $"  Path: {summary.outputPath}");
             }
 
             if (summary.result == BuildResult.Failed)
             {
                 Debug.Log("Build failed");
             }
+
         }
 
         [MenuItem("Build/Host server")]
@@ -52,8 +118,6 @@ namespace Assets.Scripts.Editor
 
                     Debug.Log("Server started, access via http://localhost:8080");
                     process.Start();
-
-                    Process.Start("chrome.exe", "http://localhost:8080");
                 }
             }
             catch (Exception e)
@@ -62,5 +126,10 @@ namespace Assets.Scripts.Editor
             }
         }
 
+        [MenuItem("Build/Open Chrome")]
+        static void OpenChrome()
+        {
+            Process.Start("chrome.exe", "http://localhost:8080");
+        }
     }
 }

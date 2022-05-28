@@ -1,17 +1,3 @@
-﻿// simple component that holds team information
-using UnityEngine;
-
-namespace Mirror
-{
-    [DisallowMultipleComponent]
-    [AddComponentMenu("Network/ Interest Management/ Team/Network Team")]
-    [HelpURL("https://mirror-networking.gitbook.io/docs/guides/interest-management")]
-    public class NetworkTeam : NetworkBehaviour
-    {
-        [Tooltip("Set this to the same value on all networked objects that belong to a given team")]
-        public string teamId = string.Empty;
-
-        [Tooltip("When enabled this object is visible to all clients. Typically this would be true for player objects")]
-        public bool forceShown;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:5eaf78097db0a76108bc3436588953cdec733105a4464f91fcd45a72ad7eb3db
+size 644

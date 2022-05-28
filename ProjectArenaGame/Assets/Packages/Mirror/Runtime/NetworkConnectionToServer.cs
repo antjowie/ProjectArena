@@ -1,26 +1,3 @@
-using System;
-using System.Runtime.CompilerServices;
-
-namespace Mirror
-{
-    public class NetworkConnectionToServer : NetworkConnection
-    {
-        public override string address => "";
-
-        // Send stage three: hand off to transport
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        protected override void SendToTransport(ArraySegment<byte> segment, int channelId = Channels.Reliable) =>
-            Transport.activeTransport.ClientSend(segment, channelId);
-
-        /// <summary>Disconnects this connection.</summary>
-        public override void Disconnect()
-        {
-            // set not ready and handle clientscene disconnect in any case
-            // (might be client or host mode here)
-            // TODO remove redundant state. have one source of truth for .ready!
-            isReady = false;
-            NetworkClient.ready = false;
-            Transport.activeTransport.ClientDisconnect();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:95bbc8a4215f79532679838b951d5a4c5cd0e6b0cd9ac46b452ebd0882c06770
+size 949

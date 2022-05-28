@@ -1,17 +1,3 @@
-// "NetworkWriterPooled" instead of "PooledNetworkWriter" to group files, for
-// easier IDE workflow and more elegant code.
-using System;
-
-namespace Mirror
-{
-    // DEPRECATED 2022-03-10
-    [Obsolete("PooledNetworkWriter was renamed to NetworkWriterPooled. It's cleaner & slightly easier to use.")]
-    public sealed class PooledNetworkWriter : NetworkWriterPooled {}
-
-    /// <summary>Pooled NetworkWriter, automatically returned to pool when using 'using'</summary>
-    // TODO make sealed again after removing obsolete NetworkWriterPooled!
-    public class NetworkWriterPooled : NetworkWriter, IDisposable
-    {
-        public void Dispose() => NetworkWriterPool.Return(this);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:87ae2de1c974e25b1baeb9706b9f71103a95e43fc2f9c9836eb07a8a458bdfc7
+size 689

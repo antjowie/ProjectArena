@@ -1,19 +1,3 @@
-using Mirror;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEngine;
-
-public class PlayerMovement : NetworkBehaviour
-{
-    void Update()
-    {
-        if (!isLocalPlayer) return;
-
-        var Movement = new float3();
-        Movement.x = Input.GetAxisRaw("Horizontal");
-        Movement.y = Input.GetAxisRaw("Vertical");
-
-        transform.Translate(Movement * 10f * Time.deltaTime);
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0625a77f58e5658bd8a44bf932e847e5aa58bd6f4f6af421b1241a46f15c12aa
+size 440

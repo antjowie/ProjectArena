@@ -1,15 +1,3 @@
-// add this to NetworkIdentities for custom range if needed.
-// only works with DistanceInterestManagement.
-using UnityEngine;
-
-namespace Mirror
-{
-    [DisallowMultipleComponent]
-    [AddComponentMenu("Network/ Interest Management/ Distance/Distance Custom Range")]
-    [HelpURL("https://mirror-networking.gitbook.io/docs/guides/interest-management")]
-    public class DistanceInterestManagementCustomRange : NetworkBehaviour
-    {
-        [Tooltip("The maximum range that objects will be visible at.")]
-        public int visRange = 20;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:590718affc64aeaf1e264cea5d0cd7150ec84a85e18ed79a8c3a9f75f69cfc5b
+size 546

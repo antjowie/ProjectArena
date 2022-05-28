@@ -1,15 +1,3 @@
-// simple component that holds match information
-using System;
-using UnityEngine;
-
-namespace Mirror
-{
-    [DisallowMultipleComponent]
-    [AddComponentMenu("Network/ Interest Management/ Match/Network Match")]
-    [HelpURL("https://mirror-networking.gitbook.io/docs/guides/interest-management")]
-    public class NetworkMatch : NetworkBehaviour
-    {
-        ///<summary>Set this to the same value on all networked objects that belong to a given match</summary>
-        public Guid matchId;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a34ad1a363b17ccd21cbf4c0b7f1852ee9094ed733f1c649c972057588e34e65
+size 499

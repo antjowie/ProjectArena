@@ -1,29 +1,3 @@
-using System.Collections.Generic;
-
-namespace Mirror.Examples.Chat
-{
-    public class Player : NetworkBehaviour
-    {
-        public static readonly HashSet<string> playerNames = new HashSet<string>();
-
-        [SyncVar(hook = nameof(OnPlayerNameChanged))]
-        public string playerName;
-
-        // RuntimeInitializeOnLoadMethod -> fast playmode without domain reload
-        [UnityEngine.RuntimeInitializeOnLoadMethod]
-        static void ResetStatics()
-        {
-            playerNames.Clear();
-        }
-
-        void OnPlayerNameChanged(string _, string newName)
-        {
-            ChatUI.instance.localPlayerName = playerName;
-        }
-
-        public override void OnStartServer()
-        {
-            playerName = (string)connectionToClient.authenticationData;
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:bd6f90002fe65a1b79be5016dd2126387e4802c804eb8150f8e526d9ced4106c
+size 795

@@ -1,0 +1,47 @@
+# Image formats:
+*.tga filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+
+# Audio formats:
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.wav filter=lfs diff=lfs merge=lfs -text
+*.aiff filter=lfs diff=lfs merge=lfs -text
+# 3D model formats:
+*.fbx filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+# Unity formats:
+*.sbsar filter=lfs diff=lfs merge=lfs -text
+*.unity filter=lfs diff=lfs merge=lfs -text
+# Other binary formats
+*.dll filter=lfs diff=lfs merge=lfs -text
+*.gitignore filter=lfs diff=lfs merge=lfs -text
+/LICENSE filter=lfs diff=lfs merge=lfs -text
+*.meta filter=lfs diff=lfs merge=lfs -text
+*.cs filter=lfs diff=lfs merge=lfs -text
+*.asmdef filter=lfs diff=lfs merge=lfs -text
+*.mat filter=lfs diff=lfs merge=lfs -text
+*.prefab filter=lfs diff=lfs merge=lfs -text
+*.txt filter=lfs diff=lfs merge=lfs -text
+*.asset filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.controller filter=lfs diff=lfs merge=lfs -text
+*.md filter=lfs diff=lfs merge=lfs -text
+*.physicMaterial filter=lfs diff=lfs merge=lfs -text
+*.physicsMaterial2D filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/KCP/kcp2k/LICENSE filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/KCP/kcp2k/VERSION filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/KCP/kcp2k/where-allocation/LICENSE filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/KCP/kcp2k/where-allocation/VERSION filter=lfs diff=lfs merge=lfs -text
+*.jslib filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/SimpleWebTransport/LICENSE filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/Telepathy/Telepathy/LICENSE filter=lfs diff=lfs merge=lfs -text
+/ProjectArenaGame/Assets/Packages/Mirror/Runtime/Transports/Telepathy/Telepathy/VERSION filter=lfs diff=lfs merge=lfs -text
+*.wlt filter=lfs diff=lfs merge=lfs -text
+*.json filter=lfs diff=lfs merge=lfs -text
+*.config filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text

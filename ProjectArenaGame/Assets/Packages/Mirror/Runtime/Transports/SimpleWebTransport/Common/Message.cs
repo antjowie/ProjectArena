@@ -1,3 +1,49 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f060a0f157f2f20a6f090fb5596393ebc91d5bf46f7fe8033d54b47072243859
-size 1155
+using System;
+
+namespace Mirror.SimpleWeb
+{
+    public struct Message
+    {
+        public readonly int connId;
+        public readonly EventType type;
+        public readonly ArrayBuffer data;
+        public readonly Exception exception;
+
+        public Message(EventType type) : this()
+        {
+            this.type = type;
+        }
+
+        public Message(ArrayBuffer data) : this()
+        {
+            type = EventType.Data;
+            this.data = data;
+        }
+
+        public Message(Exception exception) : this()
+        {
+            type = EventType.Error;
+            this.exception = exception;
+        }
+
+        public Message(int connId, EventType type) : this()
+        {
+            this.connId = connId;
+            this.type = type;
+        }
+
+        public Message(int connId, ArrayBuffer data) : this()
+        {
+            this.connId = connId;
+            type = EventType.Data;
+            this.data = data;
+        }
+
+        public Message(int connId, Exception exception) : this()
+        {
+            this.connId = connId;
+            type = EventType.Error;
+            this.exception = exception;
+        }
+    }
+}

@@ -1,3 +1,31 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cce40769f73f85dc304fff11a5a06a23ad1a0f40d370e9e3a6ea0fc820dc3dbf
-size 1027
+// logger for compilation finished hook.
+// where we need a callback and Debug.Log.
+// for Unity 2020+ we use ILPostProcessor.
+#if !UNITY_2020_3_OR_NEWER
+using Mono.CecilX;
+using UnityEngine;
+
+namespace Mirror.Weaver
+{
+    public class CompilationFinishedLogger : Logger
+    {
+        public void Warning(string message) => Warning(message, null);
+        public void Warning(string message, MemberReference mr)
+        {
+            if (mr != null) message = $"{message} (at {mr})";
+
+            if (CompilationFinishedHook.UnityLogEnabled) Debug.LogWarning(message);
+            CompilationFinishedHook.OnWeaverWarning?.Invoke(message);
+        }
+
+        public void Error(string message) => Error(message, null);
+        public void Error(string message, MemberReference mr)
+        {
+            if (mr != null) message = $"{message} (at {mr})";
+
+            if (CompilationFinishedHook.UnityLogEnabled) Debug.LogError(message);
+            CompilationFinishedHook.OnWeaverError?.Invoke(message);
+        }
+    }
+}
+#endif

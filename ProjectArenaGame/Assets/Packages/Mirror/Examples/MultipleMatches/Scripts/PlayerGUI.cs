@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4727708dc3e101a31becad3c79c2093ba0d47e78ac5b367f4b279c917ef4ab72
-size 373
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace Mirror.Examples.MultipleMatch
+{
+    public class PlayerGUI : MonoBehaviour
+    {
+        public Text playerName;
+
+        public void SetPlayerInfo(PlayerInfo info)
+        {
+            playerName.text = $"Player {info.playerIndex}";
+            playerName.color = info.ready ? Color.green : Color.red;
+        }
+    }
+}

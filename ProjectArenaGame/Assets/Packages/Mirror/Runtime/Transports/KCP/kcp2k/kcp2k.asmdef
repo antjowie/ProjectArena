@@ -1,3 +1,15 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f9ef6c396d3b19cff880ebc719b6cea8e667c3577644cf820be6a4bf2c731c3c
-size 365
+{
+    "name": "kcp2k",
+    "references": [
+        "GUID:63c380d6dae6946209ed0832388a657c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

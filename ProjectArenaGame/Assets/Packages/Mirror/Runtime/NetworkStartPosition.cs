@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:8f7c41e43beeb09655fd765a4bdb22cecae8392442434c012243a9d09d54a918
-size 631
+using UnityEngine;
+
+namespace Mirror
+{
+    /// <summary>Start position for player spawning, automatically registers itself in the NetworkManager.</summary>
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Network/Network Start Position")]
+    [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-start-position")]
+    public class NetworkStartPosition : MonoBehaviour
+    {
+        public void Awake()
+        {
+            NetworkManager.RegisterStartPosition(transform);
+        }
+
+        public void OnDestroy()
+        {
+            NetworkManager.UnRegisterStartPosition(transform);
+        }
+    }
+}

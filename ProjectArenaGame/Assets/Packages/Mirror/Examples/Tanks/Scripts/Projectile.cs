@@ -1,3 +1,35 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:386f18055a430909cc7a1011aee3ef1eec819b124024c4e07f0b30818a6613d4
-size 959
+﻿using UnityEngine;
+
+namespace Mirror.Examples.Tanks
+{
+    public class Projectile : NetworkBehaviour
+    {
+        public float destroyAfter = 2;
+        public Rigidbody rigidBody;
+        public float force = 1000;
+
+        public override void OnStartServer()
+        {
+            Invoke(nameof(DestroySelf), destroyAfter);
+        }
+
+        // set velocity for server and client. this way we don't have to sync the
+        // position, because both the server and the client simulate it.
+        void Start()
+        {
+            rigidBody.AddForce(transform.forward * force);
+        }
+
+        // destroy for everyone on the server
+        [Server]
+        void DestroySelf()
+        {
+            NetworkServer.Destroy(gameObject);
+        }
+
+        // ServerCallback because we don't want a warning
+        // if OnTriggerEnter is called on the client
+        [ServerCallback]
+        void OnTriggerEnter(Collider co) => DestroySelf();
+    }
+}

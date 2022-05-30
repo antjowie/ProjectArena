@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ae606f2d7d5decb76b147e217687f5f416032ead49882defda00f801b8e99829
-size 265
+using System.Threading;
+
+namespace Mirror.SimpleWeb
+{
+    internal static class Utils
+    {
+        public static void CheckForInterupt()
+        {
+            // sleep in order to check for ThreadInterruptedException
+            Thread.Sleep(1);
+        }
+    }
+}

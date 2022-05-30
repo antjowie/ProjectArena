@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:7510d5af321859aeeb391c725cb4467a5effa66e652a1b6f9f85884ceb2b7924
-size 325
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!134 &13400000
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player
+  dynamicFriction: 0.3
+  staticFriction: 0.5
+  bounciness: 0.2
+  frictionCombine: 1
+  bounceCombine: 2

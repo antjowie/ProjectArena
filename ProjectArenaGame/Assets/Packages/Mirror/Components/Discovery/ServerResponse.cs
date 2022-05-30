@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:a4b3894e6eb6f137fc592a72bb9a84380ad87150215f595b5bb33aae9bae786a
-size 493
+﻿using System;
+using System.Net;
+
+namespace Mirror.Discovery
+{
+    public struct ServerResponse : NetworkMessage
+    {
+        // The server that sent this
+        // this is a property so that it is not serialized,  but the
+        // client fills this up after we receive it
+        public IPEndPoint EndPoint { get; set; }
+
+        public Uri uri;
+
+        // Prevent duplicate server appearance when a connection can be made via LAN on multiple NICs
+        public long serverId;
+    }
+}

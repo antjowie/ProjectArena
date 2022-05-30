@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:63e98e6cb0208637ebed5baae2240186bbaae9bec40b6fb54679a9e506f51116
-size 601
+// ʻOumuamua's light curve, assuming little systematic error, presents its
+// motion as tumbling, rather than smoothly rotating, and moving sufficiently
+// fast relative to the Sun.
+//
+// A small number of astronomers suggested that ʻOumuamua could be a product of
+// alien technology, but evidence in support of this hypothesis is weak.
+using UnityEngine;
+
+namespace Mirror
+{
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Network/Network Transform")]
+    public class NetworkTransform : NetworkTransformBase
+    {
+        protected override Transform targetComponent => transform;
+    }
+}

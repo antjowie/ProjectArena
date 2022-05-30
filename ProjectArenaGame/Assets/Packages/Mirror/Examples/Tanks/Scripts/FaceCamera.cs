@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:474e5ccf091d0dc1c92c08d5a39ef451d6bd30d1851b566480c21b967f2160d0
-size 339
+// Useful for Text Meshes that should face the camera.
+using UnityEngine;
+
+namespace Mirror.Examples.Tanks
+{
+    public class FaceCamera : MonoBehaviour
+    {
+        // LateUpdate so that all camera updates are finished.
+        void LateUpdate()
+        {
+            transform.forward = Camera.main.transform.forward;
+        }
+    }
+}

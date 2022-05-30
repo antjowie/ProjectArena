@@ -1,3 +1,39 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e369a2de9548daea94109735f5699684fef451c7c192771c9a754c9f4bdad8ca
-size 1020
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace Mirror.Examples.NetworkRoom
+{
+    [AddComponentMenu("")]
+    public class NetworkRoomPlayerExt : NetworkRoomPlayer
+    {
+        public override void OnStartClient()
+        {
+            //Debug.Log($"OnStartClient {gameObject}");
+        }
+
+        public override void OnClientEnterRoom()
+        {
+            //Debug.Log($"OnClientEnterRoom {SceneManager.GetActiveScene().path}");
+        }
+
+        public override void OnClientExitRoom()
+        {
+            //Debug.Log($"OnClientExitRoom {SceneManager.GetActiveScene().path}");
+        }
+
+        public override void IndexChanged(int oldIndex, int newIndex)
+        {
+            //Debug.Log($"IndexChanged {newIndex}");
+        }
+
+        public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
+        {
+            //Debug.Log($"ReadyStateChanged {newReadyState}");
+        }
+
+        public override void OnGUI()
+        {
+            base.OnGUI();
+        }
+    }
+}

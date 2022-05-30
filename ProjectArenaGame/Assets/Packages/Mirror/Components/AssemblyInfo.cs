@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:5848638522e8bc5bb94c8d6a841cc4668699a33c201cd382dd6b5973624442aa
-size 606
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Mirror.Tests.Common")]
+[assembly: InternalsVisibleTo("Mirror.Tests")]
+// need to use Unity.*.CodeGen assembly name to import Unity.CompilationPipeline
+// for ILPostProcessor tests.
+[assembly: InternalsVisibleTo("Unity.Mirror.Tests.CodeGen")]
+[assembly: InternalsVisibleTo("Mirror.Tests.Generated")]
+[assembly: InternalsVisibleTo("Mirror.Tests.Runtime")]
+[assembly: InternalsVisibleTo("Mirror.Tests.Performance.Editor")]
+[assembly: InternalsVisibleTo("Mirror.Tests.Performance.Runtime")]
+[assembly: InternalsVisibleTo("Mirror.Editor")]

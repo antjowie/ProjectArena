@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:283d730f167c16b8a4ad4aa7a8937e82b7e8766dde39d086c47312aea46a9799
-size 659
+# Basic Example
+
+This is a bare bones example of a running game with Network Manager and UI prefab players:
+
+1.  Remove all scenes from Build Settings, then add the Example scene alone.
+
+2.  Open the Example scene and build the project.
+
+3.  In the editor, click Play, and Server + Client or Server Only...it will be listening on port 7777.  
+    - If you clicked Host (Server + Client), the host player will appear as Player 00.
+
+4.  Run one or more instances (up to 16 total players) of the built application.
+
+5.  Click Client on each instance.
+
+6.  Now you will see all players in the editor and the clients, all with data being updated and synchronized.

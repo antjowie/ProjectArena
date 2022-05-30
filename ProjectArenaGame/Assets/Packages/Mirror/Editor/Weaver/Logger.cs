@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2daa10cdfb50315b8eef53c38845d3a9b5c1d0dda28b134db3406b0ea0a6564b
-size 336
+using Mono.CecilX;
+
+namespace Mirror.Weaver
+{
+    // not static, because ILPostProcessor is multithreaded
+    public interface Logger
+    {
+        void Warning(string message);
+        void Warning(string message, MemberReference mr);
+        void Error(string message);
+        void Error(string message, MemberReference mr);
+    }
+}

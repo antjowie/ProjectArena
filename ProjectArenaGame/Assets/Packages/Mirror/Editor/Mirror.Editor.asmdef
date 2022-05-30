@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:ce23a94c869c8cfab3c3149a3ad0981d71612ea9e93ebcea998fe4eb477c57a0
-size 422
+{
+    "name": "Mirror.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Mirror",
+        "Unity.Mirror.CodeGen"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

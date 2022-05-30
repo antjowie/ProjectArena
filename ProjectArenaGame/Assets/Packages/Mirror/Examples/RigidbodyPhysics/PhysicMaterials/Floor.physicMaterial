@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2c13518b838cc4551cdd34e245edfd83f7673d9f6f12b4048bc68394188dadc5
-size 320
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!134 &13400000
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Floor
+  dynamicFriction: 0
+  staticFriction: 0
+  bounciness: 0.8
+  frictionCombine: 0
+  bounceCombine: 0

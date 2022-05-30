@@ -1,3 +1,26 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:35de37da413f67f3de728268896225309b4c6e7c5f790cda39363fc1807787f0
-size 677
+using System.Net.Sockets;
+
+namespace Mirror.SimpleWeb
+{
+    [System.Serializable]
+    public struct TcpConfig
+    {
+        public readonly bool noDelay;
+        public readonly int sendTimeout;
+        public readonly int receiveTimeout;
+
+        public TcpConfig(bool noDelay, int sendTimeout, int receiveTimeout)
+        {
+            this.noDelay = noDelay;
+            this.sendTimeout = sendTimeout;
+            this.receiveTimeout = receiveTimeout;
+        }
+
+        public void ApplyTo(TcpClient client)
+        {
+            client.SendTimeout = sendTimeout;
+            client.ReceiveTimeout = receiveTimeout;
+            client.NoDelay = noDelay;
+        }
+    }
+}

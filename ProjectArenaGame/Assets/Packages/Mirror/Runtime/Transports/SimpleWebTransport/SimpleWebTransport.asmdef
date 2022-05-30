@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6d8c5bea404ef5a9d11d757a043cb7995a2c60bd109ec077e50e0feb50dbcdd6
-size 324
+{
+    "name": "SimpleWebTransport",
+    "references": [
+        "Mirror"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

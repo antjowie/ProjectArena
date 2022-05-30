@@ -1,3 +1,21 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:10769b5dbc3ce4d4f0d9f25b01b4d33722a9f8139546fbe0d5132013f885448e
-size 554
+﻿using UnityEngine;
+
+namespace Mirror.Examples.Basic
+{
+    public class CanvasUI : MonoBehaviour
+    {
+        [Tooltip("Assign Main Panel so it can be turned on from Player:OnStartClient")]
+        public RectTransform mainPanel;
+
+        [Tooltip("Assign Players Panel for instantiating PlayerUI as child")]
+        public RectTransform playersPanel;
+
+        // static instance that can be referenced directly from Player script
+        public static CanvasUI instance;
+
+        void Awake()
+        {
+            instance = this;
+        }
+    }
+}

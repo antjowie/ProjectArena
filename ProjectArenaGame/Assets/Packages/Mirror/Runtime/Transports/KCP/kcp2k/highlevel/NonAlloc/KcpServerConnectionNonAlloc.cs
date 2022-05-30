@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2056b06683e9eb3369d607b0b7dc1bd21ffa9bc6c2e0b445a999234cba5419df
-size 1157
+// where-allocation version of KcpServerConnection.
+// may not be wanted on all platforms, so it's an extra optional class.
+using System.Net;
+using System.Net.Sockets;
+using WhereAllocation;
+
+namespace kcp2k
+{
+    public class KcpServerConnectionNonAlloc : KcpServerConnection
+    {
+        IPEndPointNonAlloc reusableSendEndPoint;
+
+        public KcpServerConnectionNonAlloc(Socket socket, EndPoint remoteEndpoint, IPEndPointNonAlloc reusableSendEndPoint, bool noDelay, uint interval = Kcp.INTERVAL, int fastResend = 0, bool congestionWindow = true, uint sendWindowSize = Kcp.WND_SND, uint receiveWindowSize = Kcp.WND_RCV, int timeout = DEFAULT_TIMEOUT, uint maxRetransmits = Kcp.DEADLINK)
+            : base(socket, remoteEndpoint, noDelay, interval, fastResend, congestionWindow, sendWindowSize, receiveWindowSize, timeout, maxRetransmits)
+        {
+            this.reusableSendEndPoint = reusableSendEndPoint;
+        }
+
+        protected override void RawSend(byte[] data, int length)
+        {
+            // where-allocation nonalloc send
+            socket.SendTo_NonAlloc(data, 0, length, SocketFlags.None, reusableSendEndPoint);
+        }
+    }
+}

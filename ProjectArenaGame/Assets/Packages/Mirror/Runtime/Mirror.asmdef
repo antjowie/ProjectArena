@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:031e3ce7dd0e792c0866873ee9248b26e390a1e9fc1b18d8f452f7d4540ebe85
-size 365
+{
+    "name": "Mirror",
+    "references": [
+        "Mirror.CompilerSymbols",
+        "Telepathy",
+        "kcp2k"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": []
+}

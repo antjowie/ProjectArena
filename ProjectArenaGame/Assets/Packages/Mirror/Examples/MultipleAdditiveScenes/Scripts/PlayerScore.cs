@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:668a70ab9441b45a9488b907739bdedd61170e5eca616d6ffc98686a050fcf7b
-size 769
+using UnityEngine;
+
+namespace Mirror.Examples.MultipleAdditiveScenes
+{
+    public class PlayerScore : NetworkBehaviour
+    {
+        [SyncVar]
+        public int playerNumber;
+
+        [SyncVar]
+        public int scoreIndex;
+
+        [SyncVar]
+        public int matchIndex;
+
+        [SyncVar]
+        public uint score;
+
+        public int clientMatchIndex = -1;
+
+        void OnGUI()
+        {
+            if (!isServerOnly && !isLocalPlayer && clientMatchIndex < 0)
+                clientMatchIndex = NetworkClient.connection.identity.GetComponent<PlayerScore>().matchIndex;
+
+            if (isLocalPlayer || matchIndex == clientMatchIndex)
+                GUI.Box(new Rect(10f + (scoreIndex * 110), 10f, 100f, 25f), $"P{playerNumber}: {score}");
+        }
+    }
+}

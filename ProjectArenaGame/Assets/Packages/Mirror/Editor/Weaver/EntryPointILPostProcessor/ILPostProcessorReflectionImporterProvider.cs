@@ -1,3 +1,16 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2fb02dc896ec31d4a97599a20c1fd8b2bc448346a3fd677f3b18f5b1f9b8f3d1
-size 629
+// based on paul's resolver from
+// https://github.com/MirageNet/Mirage/commit/def64cd1db525398738f057b3d1eb1fe8afc540c?branch=def64cd1db525398738f057b3d1eb1fe8afc540c&diff=split
+//
+// ILPostProcessorAssemblyRESOLVER does not find the .dll file for:
+// "System.Private.CoreLib"
+// we need this custom reflection importer to fix that.
+using Mono.CecilX;
+
+namespace Mirror.Weaver
+{
+    internal class ILPostProcessorReflectionImporterProvider : IReflectionImporterProvider
+    {
+        public IReflectionImporter GetReflectionImporter(ModuleDefinition module) =>
+            new ILPostProcessorReflectionImporter(module);
+    }
+}

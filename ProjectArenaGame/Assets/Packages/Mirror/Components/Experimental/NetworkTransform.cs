@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3269d052eda8983343a5f752fc7878f393754c18eec87e47c1663db3fc4ac973
-size 393
+﻿using System;
+using UnityEngine;
+
+namespace Mirror.Experimental
+{
+    [DisallowMultipleComponent]
+    // Deprecated 2022-01-18
+    [Obsolete("Use the default NetworkTransform instead, it has proper snapshot interpolation.")]
+    [AddComponentMenu("")]
+    public class NetworkTransform : NetworkTransformBase
+    {
+        protected override Transform targetTransform => transform;
+    }
+}

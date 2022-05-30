@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:bc7ed846451ac537e4515f5688b201f500fdab407bcb2fedb7fcd903d5c44ee2
-size 669
+using UnityEngine;
+
+namespace Mirror.Examples.RigidbodyPhysics
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class AddForce : NetworkBehaviour
+    {
+        public Rigidbody rigidbody3d;
+        public float force = 500f;
+
+        void OnValidate()
+        {
+            rigidbody3d = GetComponent<Rigidbody>();
+            rigidbody3d.isKinematic = true;
+        }
+
+        public override void OnStartServer()
+        {
+            rigidbody3d.isKinematic = false;
+        }
+
+        [ServerCallback]
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                rigidbody3d.AddForce(Vector3.up * force);
+        }
+    }
+}

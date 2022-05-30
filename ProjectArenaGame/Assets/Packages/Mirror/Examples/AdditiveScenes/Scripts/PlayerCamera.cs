@@ -1,3 +1,41 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d98d65689b96d3292f5ee2ed362bf3ef25646cdd1d62e4e9d47d479e8b481fb6
-size 1280
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+// This sets up the scene camera for the local player
+
+namespace Mirror.Examples.AdditiveScenes
+{
+    public class PlayerCamera : NetworkBehaviour
+    {
+        Camera mainCam;
+
+        void Awake()
+        {
+            mainCam = Camera.main;
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            if (mainCam != null)
+            {
+                // configure and make camera a child of player with 3rd person offset
+                mainCam.orthographic = false;
+                mainCam.transform.SetParent(transform);
+                mainCam.transform.localPosition = new Vector3(0f, 3f, -8f);
+                mainCam.transform.localEulerAngles = new Vector3(10f, 0f, 0f);
+            }
+        }
+
+        public override void OnStopLocalPlayer()
+        {
+            if (mainCam != null)
+            {
+                mainCam.transform.SetParent(null);
+                SceneManager.MoveGameObjectToScene(mainCam.gameObject, SceneManager.GetActiveScene());
+                mainCam.orthographic = true;
+                mainCam.transform.localPosition = new Vector3(0f, 70f, 0f);
+                mainCam.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
+            }
+        }
+    }
+}

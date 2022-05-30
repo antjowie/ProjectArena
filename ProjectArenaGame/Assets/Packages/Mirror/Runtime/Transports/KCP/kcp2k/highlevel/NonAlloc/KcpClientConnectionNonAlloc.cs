@@ -1,3 +1,24 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e553b058c93e8a147cd40bb40dc08b4bf6c715c155c9ec401e4f56e8829d5c73
-size 843
+// where-allocation version of KcpClientConnection.
+// may not be wanted on all platforms, so it's an extra optional class.
+using System.Net;
+using WhereAllocation;
+
+namespace kcp2k
+{
+    public class KcpClientConnectionNonAlloc : KcpClientConnection
+    {
+        IPEndPointNonAlloc reusableEP;
+
+        protected override void CreateRemoteEndPoint(IPAddress[] addresses, ushort port)
+        {
+            // create reusableEP with same address family as remoteEndPoint.
+            // otherwise ReceiveFrom_NonAlloc couldn't use it.
+            reusableEP = new IPEndPointNonAlloc(addresses[0], port);
+            base.CreateRemoteEndPoint(addresses, port);
+        }
+
+        // where-allocation nonalloc recv
+        protected override int ReceiveFrom(byte[] buffer) =>
+            socket.ReceiveFrom_NonAlloc(buffer, reusableEP);
+    }
+}

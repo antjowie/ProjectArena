@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2c8138eecc26ca648bb0cc597dab830d3b4730f197d9f504cdd95d0b712d2026
-size 1419
+using UnityEngine;
+
+namespace Mirror.Examples.MultipleAdditiveScenes
+{
+    [RequireComponent(typeof(Rigidbody))]
+    public class PhysicsCollision : NetworkBehaviour
+    {
+        [Tooltip("how forcefully to push this object")]
+        public float force = 12;
+
+        public Rigidbody rigidbody3D;
+
+        void OnValidate()
+        {
+            if (rigidbody3D == null)
+                rigidbody3D = GetComponent<Rigidbody>();
+        }
+
+        void Start()
+        {
+            rigidbody3D.isKinematic = !isServer;
+        }
+
+        [ServerCallback]
+        void OnCollisionStay(Collision other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                // get direction from which player is contacting object
+                Vector3 direction = other.contacts[0].normal;
+
+                // zero the y and normalize so we don't shove this through the floor or launch this over the wall
+                direction.y = 0;
+                direction = direction.normalized;
+
+                // push this away from player...a bit less force for host player
+                if (other.gameObject.GetComponent<NetworkIdentity>().connectionToClient.connectionId == NetworkConnection.LocalConnectionId)
+                    rigidbody3D.AddForce(direction * force * .5f);
+                else
+                    rigidbody3D.AddForce(direction * force);
+            }
+        }
+    }
+}

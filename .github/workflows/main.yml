@@ -1,5 +1,8 @@
 name: Build
 
+# TODO
+# Might need to change this into a matrix, should save us a lot of time
+
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
@@ -33,7 +36,7 @@ jobs:
       # Cache
       - uses: actions/cache@v2
         with:
-          path: Library
+          path: ProjectArenaGame/Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -54,6 +57,7 @@ jobs:
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          projectPath: ProjectArenaGame/
           buildMethod: Assets.Scripts.Editor.BuildScripts.BuildAll
           customParameters: -batchmode -quit -releaseCodeOptimization
           versioning: Semantic
@@ -63,28 +67,28 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            ${{github.workspace}}\ProjectArenaGame\Builds\Windows\Client\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Windows\Client\Client_BackUp*\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Windows\Client\Client_Burst*\
+            ${{github.workspace}}/ProjectArenaGame/Builds/Windows/Client/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Client/Client_BackUp*/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Client/Client_Burst*/
             
       - name: Web
         uses: actions/upload-artifact@v3
         with:
           path: |
-            ${{github.workspace}}\ProjectArenaGame\Builds\Windows\Web\Client\
+            ${{github.workspace}}/ProjectArenaGame/Builds/Windows/Web/Client/
 
       - name: Windows Server
         uses: actions/upload-artifact@v3
         with:
           path: |
-            ${{github.workspace}}\ProjectArenaGame\Builds\Windows\Server\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Windows\Server\Server_BackUp*\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Windows\Server\Server_Burst*\
+            ${{github.workspace}}/ProjectArenaGame/Builds/Windows/Server/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Server/Server_BackUp*/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Server/Server_Burst*/
 
       - name: Linux Server
         uses: actions/upload-artifact@v3
         with:
           path: |
-            ${{github.workspace}}\ProjectArenaGame\Builds\Linux\Server\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Linux\Server\Server_BackUp*\
-            !${{github.workspace}}\ProjectArenaGame\Builds\Linux\Server\Server_Burst*\
+            ${{github.workspace}}/ProjectArenaGame/Builds/Linux/Server/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Linux/Server/Server_BackUp*/
+            !${{github.workspace}}/ProjectArenaGame/Builds/Linux/Server/Server_Burst*/

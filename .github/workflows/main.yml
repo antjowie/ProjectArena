@@ -63,7 +63,7 @@ jobs:
           versioning: Semantic
 
       # Output
-      - name: Windows
+      - name: Upload Windows
         uses: actions/upload-artifact@v3
         with:
           path: |
@@ -71,13 +71,13 @@ jobs:
             !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Client/Client_BackUp*/
             !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Client/Client_Burst*/
             
-      - name: Web
+      - name: Upload Web
         uses: actions/upload-artifact@v3
         with:
           path: |
             ${{github.workspace}}/ProjectArenaGame/Builds/Windows/Web/Client/
 
-      - name: Windows Server
+      - name: Upload Windows Server
         uses: actions/upload-artifact@v3
         with:
           path: |
@@ -85,7 +85,7 @@ jobs:
             !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Server/Server_BackUp*/
             !${{github.workspace}}/ProjectArenaGame/Builds/Windows/Server/Server_Burst*/
 
-      - name: Linux Server
+      - name: Upload Linux Server
         uses: actions/upload-artifact@v3
         with:
           path: |

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 namespace Assets.Scripts.Editor
 {
@@ -27,7 +26,7 @@ namespace Assets.Scripts.Editor
             options.target = BuildTarget.WebGL;
             options.options = BuildOptions.None;
 
-            Debug.Log("Building Web target...");
+            Console.WriteLine("Building Web target...");
             BuildBinary(options);
         }
 
@@ -40,7 +39,7 @@ namespace Assets.Scripts.Editor
             options.target = BuildTarget.StandaloneWindows64;
             //options.options = BuildOptions.;
 
-            Debug.Log("Building Windows target...");
+            Console.WriteLine("Building Windows target...");
             BuildBinary(options);
         }
 
@@ -53,7 +52,7 @@ namespace Assets.Scripts.Editor
             options.target = BuildTarget.StandaloneWindows64;
             options.subtarget = (int)StandaloneBuildSubtarget.Server;
 
-            Debug.Log("Building Windows Server target...");
+            Console.WriteLine("Building Windows Server target...");
             BuildBinary(options);
         }
 
@@ -66,14 +65,14 @@ namespace Assets.Scripts.Editor
             options.target = BuildTarget.StandaloneLinux64;
             options.subtarget = (int)StandaloneBuildSubtarget.Server;
 
-            Debug.Log("Building Linux Server target...");
+            Console.WriteLine("Building Linux Server target...");
             BuildBinary(options);
         }
 
         [MenuItem("Build/BuildAll")]
         static void BuildAll()
         {
-            Debug.Log("Building all...");
+            Console.WriteLine("Building all...");
             BuildWeb();
             BuildWindows();
             BuildWindowsServer();
@@ -91,7 +90,7 @@ namespace Assets.Scripts.Editor
 
             if (summary.result == BuildResult.Succeeded)
             {
-                Debug.Log("Build succeeded\n" +
+                Console.WriteLine("Build succeeded\n" +
                     $"  Time: {summary.totalTime} seconds\n" +
                     $"  Size: {summary.totalSize} bytes\n" +
                     $"  Path: {summary.outputPath}");
@@ -99,7 +98,7 @@ namespace Assets.Scripts.Editor
 
             if (summary.result == BuildResult.Failed)
             {
-                Debug.Log("Build failed " + summary.result);
+                Console.WriteLine("Build failed " + summary.result);
             }
         }
 
@@ -115,13 +114,13 @@ namespace Assets.Scripts.Editor
                     process.StartInfo.Arguments = new string("Builds/Web 8080");
                     process.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
 
-                    Debug.Log("Server started, access via http://localhost:8080");
+                    Console.WriteLine("Server started, access via http://localhost:8080");
                     process.Start();
                 }
             }
             catch (Exception e)
             {
-                Debug.Log(e.Message);
+                Console.WriteLine(e.Message);
             }
         }
 
